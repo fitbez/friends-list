@@ -17,6 +17,9 @@ function Nav() {
           <Link to="/friends-list" style={StyledMenuItems}>
             Friends List
           </Link>
+          <Link to="/counties" style={StyledMenuItems}>
+            Countries
+          </Link>
           <Link to="/login" style={StyledMenuItems}>
             Login
           </Link>
