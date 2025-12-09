@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Box, Title, Input, Button } from "../styled-components";
 
 const initialState = {
+  username: "",
   email: "",
   password: "",
 };
 
-function Login({ onLogin }) {
+function RegisterForm({ onRegister }) {
   const [form, setForm] = useState(initialState);
 
   //   useEffect(() => {
@@ -25,28 +26,28 @@ function Login({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(form);
+    onRegister(form);
   };
 
   return (
     <Box>
-      <Title>Login</Title>
+      <Title>Register</Title>
 
       {Object.keys(initialState).map((field) => (
         <Input
           type={field}
           key={field}
           name={field}
-          placeholder={`${field}`}
+          placeholder={`Enter ${field}`}
           value={form[field]}
           onChange={handleChange}
         />
       ))}
       <Button type="submit" onClick={handleSubmit}>
-        Login
+        Register
       </Button>
     </Box>
   );
 }
 
-export default Login;
+export default RegisterForm;

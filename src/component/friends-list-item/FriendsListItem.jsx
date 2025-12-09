@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useContext } from "react";
+import { FriendsListContext } from "../../FriendsListContext";
 
 const StyleProfileCard = styled.div`
   margin: 20px;
@@ -24,15 +26,20 @@ const StyledCardContent = styled.div`
   padding: 5px 10px;
 `;
 
-function FriendsListItem(props) {
+function FriendsListItem() {
+  const { friendsInfo } = useContext(FriendsListContext);
+
+  console.log("friends info", friendsInfo);
   return (
     <>
-      {props.data.map((friend) => {
+      {friendsInfo.map((friend) => {
         return (
           <StyleProfileCard key={friend.id}>
             <StyledImage src={friend.profilePicture} alt="" />
             <StyledCardContent>
-              <StyledHeader>Name: {friend.name}</StyledHeader>
+              <StyledHeader>
+                Name: {`${friend.firstName} ${friend.lastName}`}
+              </StyledHeader>
               <StyledParagraph>Occupation: {friend.occupation}</StyledParagraph>
               <StyledParagraph>Age: {friend.age}</StyledParagraph>
             </StyledCardContent>

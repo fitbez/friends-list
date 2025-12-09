@@ -48,15 +48,15 @@ function Countries() {
     <>
       <h2>List of Countries</h2>
 
-      {countries.map((country) => {
+      {countries.map((country, index) => {
         return (
-          <>
+          <div key={index}>
             <img src={country.flags.png} alt="" />
             <p>Name: {country.name.common}</p>
             <p>Population: {country.population}</p>
             <p>Language: {Object.values(country.languages)[0]}</p>
             <p>Capital: {country.capital[0]}</p>
-          </>
+          </div>
         );
       })}
     </>

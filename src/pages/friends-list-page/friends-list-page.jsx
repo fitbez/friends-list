@@ -1,9 +1,9 @@
 import FriendsList from "../../component/friends-list/FriendsList";
 
-function FriendsListPage(props) {
+function FriendsListPage() {
   return (
     <>
-      <FriendsList data={props.data} />;
+      <FriendsList />;
     </>
   );
 }

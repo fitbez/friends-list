@@ -3,8 +3,11 @@
 // kebab-case - naming your file name
 // snake_case - naming enums ....
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { FriendsListContext } from "../../FriendsListContext";
 
 function Nav() {
+  const { isAuthenticated, handleLogout } = useContext(FriendsListContext);
   //PascalCase
   return (
     <>
@@ -14,15 +17,35 @@ function Nav() {
           <Link to="/" style={StyledMenuItems}>
             Home
           </Link>
-          <Link to="/friends-list" style={StyledMenuItems}>
-            Friends List
-          </Link>
+          {isAuthenticated && (
+            <Link to="/friends-list" style={StyledMenuItems}>
+              Friends List
+            </Link>
+          )}
           <Link to="/counties" style={StyledMenuItems}>
             Countries
           </Link>
-          <Link to="/login" style={StyledMenuItems}>
-            Login
+          <Link
+            to="/login"
+            style={StyledMenuItems}
+            onClick={() => {
+              if (isAuthenticated) {
+                handleLogout();
+              }
+            }}
+          >
+            {isAuthenticated ? "Logout" : "Login"}
           </Link>
+          {isAuthenticated && (
+            <Link to="/add-friend" style={StyledMenuItems}>
+              Add Friend
+            </Link>
+          )}
+          {!isAuthenticated && (
+            <Link to="/register" style={StyledMenuItems}>
+              Register
+            </Link>
+          )}
         </ul>
       </nav>
     </>
@@ -32,7 +55,7 @@ function Nav() {
 const StyledNav = {
   display: "flex",
   justifyContent: "space-between",
-  padding: "0px 30px",
+  padding: "15px 30px",
   backgroundColor: "#11CCF4",
   boxShadow: "0px 4px 8px rgba(0, 0, 0 , 0.26)",
 };
@@ -45,6 +68,7 @@ const StyledMenu = {
 
 const StyledMenuItems = {
   cursor: "pointer",
+  color: "#fff",
 };
 
 export default Nav;
